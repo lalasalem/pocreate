@@ -66,3 +66,20 @@ module.exports = (function() {
     }
   };
 })();
+
+// --- ADD THIS TO THE BOTTOM OF YOUR FILE ---
+
+const http = require('http');
+
+// Render gives your app a secret Port number. This line finds it.
+const port = process.env.PORT || 3000;
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('PoCreate is active and running on Render!');
+});
+
+server.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
+});
