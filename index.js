@@ -76,19 +76,21 @@ const port = process.env.PORT || 3000;
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html'); // Changed to HTML for cool styling!
+  // THE FIX: charset=utf-8 tells the browser how to read emojis!
+  res.setHeader('Content-Type', 'text/html; charset=utf-8'); 
   res.end(`
     <!DOCTYPE html>
-    <html>
+    <html lang="en">
       <head>
+        <meta charset="utf-8">
         <title>PoCreate Live</title>
       </head>
-      <body style="background-color: #1a1a2e; color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding-top: 100px;">
+      <body style="background-color: #1a1a2e; color: #ffffff; font-family: sans-serif; text-align: center; padding-top: 100px;">
         <div style="border: 2px solid #0f3460; display: inline-block; padding: 40px; border-radius: 20px; background-color: #16213e; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
           <h1 style="color: #e94560; font-size: 50px; margin-bottom: 10px;">🚀 PoCreate is LIVE!</h1>
           <p style="font-size: 20px; color: #abb2bf;">My Chromebook just built this in the cloud.</p>
           <hr style="border: 0; height: 1px; background: #0f3460; margin: 20px 0;">
-          <div style="font-size: 60px;">💻✨🔥</div>
+          <div style="font-size: 60px;">💻 ✨ 🔥</div>
           <p style="margin-top: 20px; font-style: italic; color: #533483;">Status: Error-Free and Running</p>
         </div>
       </body>
@@ -97,5 +99,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(port, () => {
-  console.log(`Server is listening on port ${port}`);
+  console.log('Server is listening on port ' + port);
 });
